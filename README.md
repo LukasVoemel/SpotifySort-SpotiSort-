@@ -2,10 +2,13 @@
 # Final Project(Project 5,6,7)
 
 Team Members:
-1. Name
-2. Name
+1. Kieran Stone
+2. Lukas Voemel
 
 Java Version:
+openjdk version "16.0.1" 2021-04-20
+OpenJDK Runtime Environment (build 16.0.1+9-Ubuntu-120.04)
+OpenJDK 64-Bit Server VM (build 16.0.1+9-Ubuntu-120.04, mixed mode, sharing)
 
 Additional Comments:
 
