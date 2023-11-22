@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 
-app = Flask(__name__)
+app = Flask(__name__,  template_folder='../Frontend/templates')
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         # Process login (authenticate user)
@@ -11,7 +11,7 @@ def login():
     # Show login form
     return render_template('login.html')
 
-@app.route('/')
+@app.route('/login')
 def home():
     # Home page after successful login
     # Display user's liked songs, or other relevant info
