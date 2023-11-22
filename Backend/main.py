@@ -18,7 +18,7 @@ app.secret_key = 'asdkfjhwih4khsgksadhfsakdfjhvn234kjhasfkb3i4h2'
 TOKEN_INFO = 'token_info'
 
 
-
+#Since this seems to be a much easier project we can sort by very specific things, so that can be one of the classes
 
 @app.route('/' , methods=['GET', 'POST']) #what is below each route is the function that get executed
 # def login():
@@ -27,10 +27,7 @@ TOKEN_INFO = 'token_info'
 
 def login():
   if request.method == 'POST':
-    # Get the username and password from the form
-    username = request.form['username']
-    password = request.form['password']
-
+   
     auth_url = create_spotify_oauth().get_authorize_url()
     return redirect(auth_url) #redirectting them there
 
