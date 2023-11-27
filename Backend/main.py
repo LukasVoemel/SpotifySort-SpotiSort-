@@ -1,14 +1,15 @@
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import os
 import time
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from flask import Flask, render_template, request, url_for, session, redirect
 
-load_dotenv()
+#load_dotenv()
 
-client_id = os.getenv("CLIENT_ID")
-client_secret = os.getenv("CLIENT_SECRET")
+#client_id = os.getenv("CLIENT_ID")
+
+#client_secret = os.getenv("CLIENT_SECRET")
 
 
 app = Flask(__name__,template_folder='../Frontend/templates', static_folder='../Frontend/static' )
