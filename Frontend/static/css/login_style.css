@@ -1,0 +1,54 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('../img/Screenshot\ 2023-11-15\ 115858.png') no-repeat center center fixed; 
+    background-size: cover;
+}
+
+.login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.login-box {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 40px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+}
+
+.title {
+    color: #1DB954; /* Spotify brand color for the title */
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #1DB954;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1ed760;
+}
