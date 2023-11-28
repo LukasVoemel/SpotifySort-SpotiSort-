@@ -4,6 +4,10 @@ body, html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #121212; /* Spotify color theme */
     color: white;
+    background-image: url('../img/Screenshot\ 2023-11-28\ 124549.png'); /* Adjust the path as per your project structure */
+    background-size: cover; /* Cover the entire page */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat;
 }
 
 header {
@@ -31,6 +35,11 @@ header {
 .nav-links li {
     display: inline;
     padding: 0 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .nav-links a {
