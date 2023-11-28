@@ -1,3 +1,4 @@
+
 import os
 import time
 import spotipy
@@ -38,7 +39,12 @@ def redirect_page():
   code = request.args.get('code')
   token_info = create_spotify_oauth().get_access_token(code) # get_access_token exchanges auth code for a token
   session[TOKEN_INFO] = token_info #stores token info in the session 
-  return redirect(url_for('liked_songs', external = True))
+  return redirect(url_for('home_page', external = True))
+
+@app.route('/home_page')
+def home_page():
+  return render_template('home.html')
+
 
 @app.route('/likedSongs')
 def liked_songs():
