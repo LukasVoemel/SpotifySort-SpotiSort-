@@ -7,20 +7,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sortPage_style.css') }}">
 
 </head>
 
 <body>
+  <div class="side-by-side-containers">
+    <div class="left-container">
+        <h1 id="titleLiked" style="color:white">My Spotify Liked Songs</h1>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Song Name</li>
+          <li class="list-group-item">Artist * Album</li>
+        </ul>
+    </div>
 
-    <div class="container mt-5">
-        <h1 id="titleLiked">My Spotify Liked Songs</h1>
-        <div class="card" style="width: 18rem;">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Song Name</li>
-            <li class="list-group-item">Artist * Album</li>
-          </ul>
+    <div class="right-container">
+        <h1 id="titleSortButton" style="color:white">Sort Songs By:</h1>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-outline-secondary">Genre</button>
+            <button type="button" class="btn btn-outline-secondary">Artist</button>
+            <button type="button" class="btn btn-outline-secondary">Mood</button>
         </div>
     </div>
+</div>
+
+  
 </body>
 
 </html>

@@ -1,0 +1,51 @@
+.containers {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.container {
+    flex: 1; /* This ensures that both containers take up equal space */
+    margin: 200px; /* This adds some space between the containers */
+}
+
+.sort-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-outline-secondary {
+    border: 2px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    background-color: transparent;
+    margin-top: 0; /* Remove top margin if any */
+    margin-bottom: 0; 
+    margin-right:50px;
+}
+
+.btn-outline-secondary:hover {
+    background-color: rgb(255, 255, 255);
+    color: white;
+}
+
+.side-by-side-containers {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent the containers from wrapping */
+}
+
+.left-container,
+.right-container {
+    min-width: 50%; /* Ensure each container takes up at least half the parent width */
+    box-sizing: border-box; /* Include padding and borders in the element's total width and height */
+    margin-top:50px;
+}
+
+/* This is optional, just to ensure there's some space between the containers */
+.left-container {
+    margin-right: 200px;
+    margin-left: 50px;
+}
+
+/* Add other styles here as needed */
