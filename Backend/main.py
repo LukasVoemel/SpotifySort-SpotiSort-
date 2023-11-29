@@ -49,6 +49,12 @@ def liked_songs():
   liked_songs = sp.current_user_saved_tracks()
   return liked_songs
 
+@app.route('/sort_here_button', methods=['GET', 'POST'], endpoint='sort_here_button')
+def sort_here_button():
+  print("Route triggered!")
+  return render_template("sortPage.html")
+  
+
 def get_token():
   token_info = session.get(TOKEN_INFO, None)
   #if the token does not exist we want to redirect the user
