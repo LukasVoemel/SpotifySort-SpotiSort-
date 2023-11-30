@@ -14,11 +14,13 @@
 <body>
   <div class="side-by-side-containers">
     <div class="left-container">
-        <h1 id="titleLiked" style="color:white">My Spotify Liked Songs</h1>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">{{liked_songs}}</li>
-          <li class="list-group-item">Artist * Album</li>
-        </ul>
+      <h1 id="titleLiked" style="color:white">Liked Songs</h1>
+        {% for song in liked_songs %}
+          <ul class="list-group list-group-cool">
+            <li class="list-group-item cool-text">{{song.name}}</li>
+            <li class="list-group-item">Artist * Album</li>
+          </ul>
+        {% endfor %}
     </div>
 
     <div class="right-container">

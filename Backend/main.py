@@ -39,51 +39,28 @@ def main():
 
   @app.route('/sort_here_button', methods=['GET', 'POST'], endpoint='sort_here_button')
   def sort_here_button():
-    print("Route triggered!")
-    return render_template("sortPage.html")
-    
+    showLiked = ArtistInfo(appManager.get_token())
+    response_data = showLiked.get_info()
 
-  def display_liked():
-    try:
-      token_info = appManager.get_token()
-    except:
-      print("User not loged in")
-      return redirect('')
-    sp = spotipy.Spotify(auth=token_info['access_token'])
-    liked_songs = sp.current_user_saved_tracks()
-    songs = []
-    artists = []
-    for track in liked_songs:
-      songs.append(track["name"])
-    for track in liked_songs:
-      artists.append(track["artists"]["name"])
+    showLiked = ArtistInfo(appManager.get_token())
+    response_data = showLiked.get_info()
+    return render_template('sortPage.html', liked_songs = response_data)
+  
 
   @app.route('/display_liked', methods=['GET', 'POST'], endpoint='display_liked')
   def display_liked():
 
-    songInfo = SongInfo()
-    showLiked = ArtistInfo(songInfo)
-
+    
+    showLiked = ArtistInfo(appManager.get_token())
     response_data = showLiked.get_info()
-
     return jsonify(response_data)
-    return render_template('sortPage.html', liked_songs = showLiked)
+    
       
 
 
   @app.route('/sort_genre', methods=['GET', 'POST'], endpoint='sort_genre')
   def sort_genre():
-    try:
-      token_info = appManager.get_token()
-      sp = spotipy.Spotify(auth=token_info['access_token'])
-      #liked_songs = sp.current_user_saved_tracks()
-      showLiked = ArtistInfo()
-    
-    except:
-      print("User not loged in")
-      return redirect('')
-    
-    return render_template('sortPage.html', liked_songs = showLiked)
+    print("asdf")
   
 
   app.run(debug=True)
