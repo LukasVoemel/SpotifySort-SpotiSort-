@@ -1,0 +1,19 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #121212; /* Spotify color theme */
+  color: white;
+  background-image: url('../img/Screenshot\ 2023-11-15\ 115858.png'); 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+}
+
+
+#titleLiked {
+  color: #1DB954;
+  font-size: 36px; 
+  text-align: center;
+  margin-top: 20px;
+}
