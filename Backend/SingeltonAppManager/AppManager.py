@@ -58,6 +58,29 @@ def display_liked():
   for track in liked_songs:
     artists.append(track["artists"]["name"])
     
+#should get the name of the track and artist
+@app.route('/get_track_artist', methods=['GET', 'POST'], endpoint='get_track_artist')
+def get_track_artist():
+  try:
+    token_info = get_token()
+  except:
+    print("User not loged in")
+    return redirect('')
+  sp = spotipy.Spotify(auth=token_info['access_token'])
+  liked_songs = sp.current_user_saved_tracks()
+  titles = []
+  artists=[]
+  for item in liked_songs.get("items", []):
+    # Extract the track name
+    titles.append(item.get("track", {}).get("name", ""))
+
+    # Extract the artist names (there might be more than one artist)
+    artist = item.get("track", {}).get("artists", [])
+    artist_names = ", ".join(artist1.get("name", "") for artist1 in artist)
+
+    # Add the song name and artist name(s) as a tuple to the list
+    artists.append(artist_names)
+
 
 @app.route('/sort_genre', methods=['GET', 'POST'], endpoint='sort_genre')
 def sort_genre():
@@ -69,7 +92,7 @@ def sort_genre():
     return redirect('')
   sp = spotipy.Spotify(auth=token_info['access_token'])
   liked_songs = sp.current_user_saved_tracks()
-  print((liked_songs))
+  #print((liked_songs))
   return liked_songs
   
 # def sort_artist():
