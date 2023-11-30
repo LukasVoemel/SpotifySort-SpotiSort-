@@ -10,6 +10,8 @@ app.config['SESSION_COOKIE_NAME'] = 'Spotify Cookie'
 app.secret_key = 'asdkfjhwih4khsgksadhfsakdfjhvn234kjhasfkb3i4h2'
 TOKEN_INFO = 'token_info'
 
+
+
 @app.route('/' , methods=['GET', 'POST']) #what is below each route is the function that get executed
 def login():
   if request.method == 'POST':
@@ -40,6 +42,50 @@ def sort_here_button():
   print("Route triggered!")
   return render_template("sortPage.html")
   
+
+def display_liked():
+  try:
+    token_info = get_token()
+  except:
+    print("User not loged in")
+    return redirect('')
+  sp = spotipy.Spotify(auth=token_info['access_token'])
+  liked_songs = sp.current_user_saved_tracks()
+  songs = []
+  artists = []
+  for track in liked_songs:
+    songs.append(track["name"])
+  for track in liked_songs:
+    artists.append(track["artists"]["name"])
+    
+
+@app.route('/sort_genre', methods=['GET', 'POST'], endpoint='sort_genre')
+def sort_genre():
+  #genre sort
+  try:
+    token_info = get_token()
+  except:
+    print("User not loged in")
+    return redirect('')
+  sp = spotipy.Spotify(auth=token_info['access_token'])
+  liked_songs = sp.current_user_saved_tracks()
+  print((liked_songs))
+  return liked_songs
+  
+# def sort_artist():
+#   #artist sort
+  
+# def sort_mood():
+#   #mood sort
+
+
+
+
+
+
+
+
+
 
 
 def get_token():
