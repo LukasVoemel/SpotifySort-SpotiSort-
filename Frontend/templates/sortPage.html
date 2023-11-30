@@ -24,7 +24,9 @@
     <div class="right-container">
         <h1 id="titleSortButton" style="color:white">Sort Songs By:</h1>
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-outline-secondary">Genre</button>
+            <form method="POST" action = "{{url_for('sort_genre')}}">
+              <button type="submit" class="btn btn-outline-secondary">Genre</button>
+            </form>
             <button type="button" class="btn btn-outline-secondary">Artist</button>
             <button type="button" class="btn btn-outline-secondary">Mood</button>
         </div>
