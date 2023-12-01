@@ -48,4 +48,24 @@
     margin-left: 50px;
 }
 
-/* Add other styles here as needed */
+.list-group-item{
+    color: black;
+}
+
+
+.list-group-item.cool-text {
+    color: rgb(56, 2, 2);
+    font-family: 'YourCoolFont', sans-serif; 
+    background-color: darkgrey;
+   
+}
+
+
+.list-group-cool {
+    border: 2px solid rgb(179, 255, 0);
+    border-radius: 10px; 
+    margin-bottom: 20px;
+}
+
+
+
