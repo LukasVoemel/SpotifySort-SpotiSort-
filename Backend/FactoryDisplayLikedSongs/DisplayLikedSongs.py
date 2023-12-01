@@ -26,11 +26,16 @@ class ArtistInfo(SongInfo):
         self.tracks.extend(response.get('items', []))
         
       self.tracks_info = []
-      #print("ASdfasdf   ", self.tracks[0])
+      
       for item in self.tracks:
         track_info = {}
         track = item['track']
+        artists = track['artists']
         track_info['name'] = track['name']
+        names = "" + artists[0]['name']
+        for person in artists[1:-1]:
+          names+= ", " + person['name']
+        track_info["artists"] = names
         self.tracks_info.append(track_info)
 
 

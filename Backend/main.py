@@ -41,9 +41,6 @@ def main():
   def sort_here_button():
     showLiked = ArtistInfo(appManager.get_token())
     response_data = showLiked.get_info()
-
-    showLiked = ArtistInfo(appManager.get_token())
-    response_data = showLiked.get_info()
     return render_template('sortPage.html', liked_songs = response_data)
   
 

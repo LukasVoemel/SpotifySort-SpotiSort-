@@ -18,7 +18,7 @@
         {% for song in liked_songs %}
           <ul class="list-group list-group-cool">
             <li class="list-group-item cool-text">{{song.name}}</li>
-            <li class="list-group-item">Artist * Album</li>
+            <li class="list-group-item">{{song.artists}}</li>
           </ul>
         {% endfor %}
     </div>
