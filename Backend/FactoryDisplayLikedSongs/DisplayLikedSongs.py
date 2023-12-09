@@ -20,7 +20,7 @@ class ArtistInfo(SongInfo):
       limit_step = 50
       for offset in range(0, 1000, limit_step):
         response = self.sp.current_user_saved_tracks(limit = limit_step, offset=offset)
-        #print(response)
+        print(response)
         if len(response) == 0:
           break
         self.tracks.extend(response.get('items', []))
