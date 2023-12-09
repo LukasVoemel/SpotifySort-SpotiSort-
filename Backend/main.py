@@ -2,9 +2,9 @@ from SingeltonAppManager.AppManager import AppManager
 from SingeltonAppManager.AppManager import app
 from flask import render_template, request, url_for, session, redirect
 from flask import jsonify
-from FactoryDisplayLikedSongs.DisplayLikedSongs import SongInfo, ArtistInfo
+from FactoryDisplayLikedSongs.DisplayLikedSongs import ArtistInfoFactory
 from SingeltonAppManager.AppManager import TOKEN_INFO # Import the app instance for the token
-from StrategySortMethodAlgo.SortAlgo import SortAlgo
+from StrategySortMethodAlgo.SortAlgo import MoodSortingStrategy, ArtistSortingStrategy, GenreSortingStrategy, SortAlgo
 import spotipy
 
 def main():
@@ -31,23 +31,23 @@ def main():
 
   @app.route('/sort_here_button', methods=['GET', 'POST'], endpoint='sort_here_button')
   def sort_here_button():
-    return render_template('sortPage.html', liked_songs = ArtistInfo(appManager.get_token()).get_info())
+    return render_template('sortPage.html', liked_songs = ArtistInfoFactory().create_song_info(appManager.get_token()).get_info())
   
   @app.route('/display_liked', methods=['GET', 'POST'], endpoint='display_liked')
   def display_liked():
-    return jsonify(ArtistInfo(appManager.get_token()).get_info())
+    return jsonify(ArtistInfoFactory().create_song_info(appManager.get_token()).get_info())
   
   @app.route('/sort_genre', methods=['GET', 'POST'], endpoint='sort_genre')
   def sort_genre():
-    return render_template('playlistCreate.html', playlist=SortAlgo(appManager.get_token()).sort_genreAlgo())
+    return render_template('playlistCreate.html', playlist=SortAlgo(GenreSortingStrategy(), appManager.get_token()).sort())
   
   @app.route('/sort_artist', methods=['GET', 'POST'], endpoint='sort_artist')
   def sort_artist():
-    return render_template('playlistCreate.html', playlist=SortAlgo(appManager.get_token()).sort_artistAlgo())
+    return render_template('playlistCreate.html', playlist=SortAlgo(ArtistSortingStrategy(), appManager.get_token()).sort())
   
   @app.route('/sort_mood', methods=['GET', 'POST'], endpoint='sort_mood')
   def sort_mood():
-    return render_template('playlistCreate.html', playlist=SortAlgo(appManager.get_token()).sort_moodAlgo())
+    return render_template('playlistCreate.html', playlist=SortAlgo(MoodSortingStrategy(), appManager.get_token()).sort())
   
   @app.route('/remove_song', methods=['POST'])
   def remove_song():
