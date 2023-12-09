@@ -12,32 +12,23 @@ class SongInfo(ABC):
 # Concrete Product: Artist
 class ArtistInfo(SongInfo):
   def __init__(self,token_info ,  *args, **kwargs):
-      
-     
-      self.sp = spotipy.Spotify(auth=token_info['access_token'])
-      self.liked_songs = self.sp.current_user_saved_tracks()
+      self.liked_songs = spotipy.Spotify(auth=token_info['access_token']).current_user_saved_tracks()
       self.tracks = []
-      limit_step = 50
-      for offset in range(0, 1000, limit_step):
-        response = self.sp.current_user_saved_tracks(limit = limit_step, offset=offset)
-        #print(response)
-        if len(response) == 0:
+      for offset in range(0, 1000, 50):
+        response = spotipy.Spotify(auth=token_info['access_token']).current_user_saved_tracks(limit = 50, offset=offset)
+        if len(response) == 0: # type: ignore
           break
-        self.tracks.extend(response.get('items', []))
-        
+        self.tracks.extend(response.get('items', [])) # type: ignore
       self.tracks_info = []
-      
       for item in self.tracks:
         track_info = {}
-        track = item['track']
-        artists = track['artists']
-        track_info['name'] = track['name']
-        names = "" + artists[0]['name']
-        for person in artists[1:-1]:
+        track_info['name'] = item['track']['name']
+        names = "" + item['track']['artists'][0]['name']
+        for person in item['track']['artists'][1:-1]:
           names+= ", " + person['name']
         track_info["artists"] = names
+        track_info['id'] = item['track']['id']
         self.tracks_info.append(track_info)
-
 
   def get_info(self): 
     return self.tracks_info
