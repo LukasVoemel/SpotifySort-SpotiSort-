@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/playlistCreate_style.css') }}">
+    <title>Sorted Playlist</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-4">Sorted Playlist</h1>
+        {% for category, songs in playlist.items() %}
+            {% if songs %}
+                <div class="category">
+                    <h2>{{ category }}</h2>
+                    <ul class="list-group">
+                        {% for song in songs %}
+                            <li class="list-group-item">{{ song }}</li>
+                        {% endfor %}
+                    </ul>
+                    <div class="text-center button-group">
+                        <form method="POST"  class="d-inline">
+                            <button type="submit" class="btn btn-success">Accept</button>
+                        </form>
+                        <form method="POST" class="d-inline">
+                            <button type="submit" class="btn btn-danger">Decline</button>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>
