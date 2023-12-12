@@ -1,0 +1,16 @@
+  # def _get_tracks_info(self,sp):
+  #   # tracks = []
+  #   # for offset in range(0, 1000, 50):
+  #   #   response = sp.current_user_saved_tracks(limit = 50, offset=offset)
+  #   #   if len(response) == 0: # type: ignore
+  #   #     break
+  #   #   tracks.extend(response.get('items', [])) # type: ignore
+  #   # tracks_info = []
+  #   # for item in tracks:
+  #   #   track_info = {
+  #   #     'name': item['track']['name'],
+  #   #     'artists': ", ".join(artist['name'] for artist in item['track']['artists']),
+  #   #     'id': item['track']['id']
+  #   #   }
+  #   #   tracks_info.append(track_info)
+  #   # return tracks_info
