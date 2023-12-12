@@ -24,19 +24,17 @@ class GenreSortingStrategy(SortingStrategy):
 class ArtistSortingStrategy(SortingStrategy):
     def sort(self,tracks,sp):
         artist_song_dict = {}
-        song_uri = []
         for song in tracks:
             artist_name = song['track']['artists'][0]['name']
-            if artist_name not in artist_song_dict: artist_song_dict[artist_name] = []
-            song_uri.append(song['track']['uri'])
-            artist_song_dict[artist_name].append(song['track']['name'])
-        artist_song_dict['song_uri'] = song_uri
+            if artist_name not in artist_song_dict: 
+                artist_song_dict[artist_name] = {'songs':[], 'song_uri':[]}
+            artist_song_dict[artist_name]['songs'].append(song['track']['name'])
+            artist_song_dict[artist_name]['song_uri'].append(song['track']['uri'])
         return artist_song_dict
     
 class MoodSortingStrategy(SortingStrategy):
     def sort(self,tracks,sp):
-        mood_song_dict = {'Happy': [], 'Sad': [], 'Energetic': [], 'Calm': []}
-        song_uri = []
+        mood_song_dict = {'Happy': {'songs':[], 'song_uri':[]}, 'Sad': {'songs':[], 'song_uri':[]}, 'Energetic': {'songs':[], 'song_uri':[]}, 'Calm': {'songs':[], 'song_uri':[]}}
         for song in tracks:
             features = sp.audio_features(song['track']['id'])[0] # type: ignore
             if features:
@@ -46,9 +44,8 @@ class MoodSortingStrategy(SortingStrategy):
                 elif valence < 0.5 and energy < 0.5: mood = 'Sad'
                 elif energy > 0.5: mood = 'Energetic'
                 else: mood = 'Calm'
-                song_uri.append(song['track']['uri'])
-                mood_song_dict[mood].append(song['track']['name'])
-        mood_song_dict['song_uri'] = song_uri
+                mood_song_dict[mood]['songs'].append(song['track']['name'])
+                mood_song_dict[mood]['song_uri'].append(song['track']['uri'])
         return mood_song_dict
 
 class SortAlgo():
