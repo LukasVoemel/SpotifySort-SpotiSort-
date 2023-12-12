@@ -19,5 +19,5 @@ class PlayMod():
 
         # Splitting the song_uris list into chunks of 100, as Spotify has a limit
         # on the number of tracks that can be added at once.
-        for i in range (len(song_list)):
-            self.sp.playlist_add_items(playlist['id'], song_list[i])
+        # self.sp.playlist_add_items(playlist['id'], song_list[i])
+        self.sp.user_playlist_add_tracks(user_id, playlist['id'],eval(song_list))

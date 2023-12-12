@@ -62,7 +62,7 @@ def main():
   @app.route('/create_playlist', methods=['GET','POST'], endpoint='create_playlist')
   def create_playlist():
       PlayMod(appManager.get_token()).create_playlist(request.form['playlist_name'],request.form['song_list'])
-      return render_template('playlistCreate.html', playlist=request.form['playlist'])
+      return render_template('playlistCreate.html', playlist=eval(request.form['playlist']))
 
   app.run(debug=True)
 
