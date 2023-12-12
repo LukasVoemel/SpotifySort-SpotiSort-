@@ -12,10 +12,18 @@
   <div class="side-by-side-containers">
     <div class="left-container">
       <h1 id="titleLiked" style="color:white">Liked Songs</h1>
-        {% for song in liked_songs %}
+        {% for artist, song, album_picture in artist_and_song_name %}
           <ul class="list-group list-group-cool">
-            <li class="list-group-item cool-text">{{song.name}}</li>
-            <li class="list-group-item">{{song.artists}}</li>
+
+            <li class="list-group-item cool-text">
+              <img src="{{ album_picture }}" alt="Album Cover" width="100" height="100">
+              {{song}}
+            </li>
+
+            <li class="list-group-item cool-text">
+              {{artist}}
+            </li>
+
             <form method="POST" action="{{ url_for('remove_song') }}">
               <input type="hidden" name="song_id" value="{{ song.id }}">
               <button type="submit" class="btn btn-outline-secondary">Remove song</button>

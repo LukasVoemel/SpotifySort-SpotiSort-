@@ -2,6 +2,36 @@ from flask import session, redirect, url_for
 from abc import ABC, abstractmethod
 from SingeltonAppManager.AppManager import app
 import spotipy
+from ObserverTracks.ObserveLikedTracks import TracksSubject, trackInfoObserver
+import time
+
+
+#Product Interface
+  # defines common interface for all objects (products)
+  # that can we produced by the createor and subclasses 
+  # SongInfo Class is the product interface that ensures that all types of songs 
+
+  # information(arsti, song, album) all implement the get_info method which provides standart for getting the data 
+
+#Concerete Products 
+  # Specifc implementeations of the prodcut interface 
+  # each concerere product calss implements the interface in a way appropriate to its type 
+  #ArtistInfo, SongInfo, AlbumInfo are concrete prodicys which provife specifc implementation 
+  #
+
+#Factory Interface
+  # defines methods for creating objects, In the factory Pattern 
+  # this interface allows for the creating ob objects 
+  # without specifiuiong the exact class of the object that will be created 
+  
+  #info factory is the factory inerface 
+  #declares methods like artist info, create song info, create almbum info, which are meant to be implemented by conrcrete factores to specify types of song info object 
+
+#Concrete factoreis
+  # impements factory interface and are responsbible for creating one of more types of concrete products 
+  # each concrere producs knows how to make a concrete facotry 
+
+
 
 #Product Interface
 class SongInfo(ABC):
@@ -9,68 +39,109 @@ class SongInfo(ABC):
     def get_info(self):
         pass
 
-# Concrete Product: Artist
+# Concrete Products: Artist
 class ArtistInfo(SongInfo):
-<<<<<<< HEAD
-  def __init__(self,token_info ,  *args, **kwargs):
-      
-     
-      self.sp = spotipy.Spotify(auth=token_info['access_token'])
-      self.liked_songs = self.sp.current_user_saved_tracks()
-      self.tracks = []
-      limit_step = 50
-      for offset in range(0, 1000, limit_step):
-        response = self.sp.current_user_saved_tracks(limit = limit_step, offset=offset)
-        print(response)
-        if len(response) == 0:
-          break
-        self.tracks.extend(response.get('items', []))
-        
-      self.tracks_info = []
-      
-      for item in self.tracks:
-        track_info = {}
-        track = item['track']
-        artists = track['artists']
-        track_info['name'] = track['name']
-        names = "" + artists[0]['name']
-        for person in artists[1:-1]:
-          names+= ", " + person['name']
-        track_info["artists"] = names
-        self.tracks_info.append(track_info)
-=======
   def __init__(self, token_info):
     self.token_info = token_info
-    sp = spotipy.Spotify(auth=self.token_info['access_token'])
-    self.tracks_info = self._get_tracks_info(sp)
->>>>>>> bce0f7f1cea1a5070e08cd447e175c2e3ccee647
-
-  def _get_tracks_info(self,sp):
-    tracks = []
-    for offset in range(0, 1000, 50):
-      response = sp.current_user_saved_tracks(limit = 50, offset=offset)
-      if len(response) == 0: # type: ignore
-        break
-      tracks.extend(response.get('items', [])) # type: ignore
-    tracks_info = []
-    for item in tracks:
-      track_info = {
-        'name': item['track']['name'],
-        'artists': ", ".join(artist['name'] for artist in item['track']['artists']),
-        'id': item['track']['id']
-      }
-      tracks_info.append(track_info)
-    return tracks_info
+    self.sp = spotipy.Spotify(auth=self.token_info['access_token'])
+    self.tracks_info = None
+    self.subject = TracksSubject(self.sp)
+    self.observer = trackInfoObserver()
+    self.subject.register_observer(self.observer)
+    self.subject.run()
+    time.sleep(10)
 
   def get_info(self): 
-    return self.tracks_info
 
+    if self.tracks_info is None:
+       self.tracks_info = self.observer.tracks
+ 
+    artist_names = []
+    first_item = self.tracks_info
+
+    for item in first_item['items']:
+      for artist in item['track']['artists']:
+          artist_name = artist['name']
+          artist_names.append(artist_name)
+
+    return artist_names
+
+
+class SongInfo(SongInfo):
+  def __init__(self, token_info):
+    self.token_info = token_info
+    self.sp = spotipy.Spotify(auth=self.token_info['access_token'])
+    self.tracks_info = None
+    self.subject = TracksSubject(self.sp)
+    self.observer = trackInfoObserver()
+    self.subject.register_observer(self.observer)
+    self.subject.run()
+    time.sleep(10)
+
+  def get_info(self): 
+
+    if self.tracks_info is None:
+      self.tracks_info = self.observer.tracks
+
+    track_names = []
+    first_item = self.tracks_info
+
+    for item in first_item['items']:
+      track_name = item['track']['name']
+      track_names.append(track_name)
+
+    return track_names
+    
+
+class AlbumInfo(SongInfo):
+  def __init__(self, token_info):
+    self.token_info = token_info
+    self.sp = spotipy.Spotify(auth=self.token_info['access_token'])
+    self.tracks_info = None
+    self.subject = TracksSubject(self.sp)
+    self.observer = trackInfoObserver()
+    self.subject.register_observer(self.observer)
+    self.subject.run()
+    time.sleep(5)
+
+  def get_info(self): 
+
+    if self.tracks_info is None:
+       self.tracks_info = self.observer.tracks
+ 
+    image_urls = []
+    first_item = self.tracks_info
+
+    for item in first_item['items']:
+      image_url = item['track']['album']['images'][0]['url']
+      image_urls.append(image_url)
+
+    return image_urls
+
+
+#Factory INterface
 class InfoFactory(ABC):
+    @abstractmethod
+    def create_artist_info(self, token_info):
+        pass
+
     @abstractmethod
     def create_song_info(self, token_info):
         pass
 
-# Concrete Factory: ArtistInfo
+    @abstractmethod
+    def create_album_info(self, token_info):
+        pass
+
+
+# Concerte Factories
 class ArtistInfoFactory(InfoFactory):
-    def create_song_info(self, token_info):
+    def create_artist_info(self, token_info):
         return ArtistInfo(token_info)
+    
+    def create_song_info(self, token_info):
+        return SongInfo(token_info)
+    
+    def create_album_info(self, token_info):
+      return AlbumInfo(token_info)
+
