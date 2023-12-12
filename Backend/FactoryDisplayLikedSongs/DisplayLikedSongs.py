@@ -83,6 +83,30 @@ class SongInfo(SongInfo):
       track_names.append(track_name)
 
     return track_names
+  
+class IdInfo(SongInfo):
+  def __init__(self, token_info):
+    self.token_info = token_info
+    self.sp = spotipy.Spotify(auth=self.token_info['access_token'])
+    self.tracks_info = None
+    self.subject = TracksSubject(self.sp)
+    self.observer = trackInfoObserver()
+    self.subject.register_observer(self.observer)
+    self.subject.run()
+    time.sleep(10)
+
+  def get_info(self): 
+    if self.tracks_info is None:
+      self.tracks_info = self.observer.tracks
+
+    track_ids = []
+    first_item = self.tracks_info
+
+    for item in first_item['items']: # type: ignore
+      track_id = item['track']['id']
+      track_ids.append(track_id)
+
+    return track_ids
 
 class AlbumInfo(SongInfo):
   def __init__(self, token_info):
@@ -121,6 +145,10 @@ class InfoFactory(ABC):
     @abstractmethod
     def create_album_info(self, token_info):
         pass
+    
+    @abstractmethod
+    def create_id_info(self, token_info):
+        pass
 
 # Concerte Factories
 class ArtistInfoFactory(InfoFactory):
@@ -132,4 +160,7 @@ class ArtistInfoFactory(InfoFactory):
     
     def create_album_info(self, token_info):
       return AlbumInfo(token_info)
+    
+    def create_id_info(self, token_info):
+      return IdInfo(token_info)
 
