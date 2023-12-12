@@ -56,7 +56,15 @@
 .list-group-item.cool-text {
     color: rgb(56, 2, 2);
     font-family: 'YourCoolFont', sans-serif; 
-    background-color: darkgrey;
+    font-size: x-large;
+    background-color: rgba(205, 241, 196, 0.681);
+   
+}
+.list-group-item.cool-text2 {
+    color: rgb(56, 2, 2);
+    font-family: 'YourCoolFont', sans-serif; 
+    font-size: medium;
+    background-color: rgba(205, 241, 196, 0.681);
    
 }
 
