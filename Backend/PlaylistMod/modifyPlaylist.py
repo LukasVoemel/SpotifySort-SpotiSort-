@@ -1,12 +1,11 @@
 from SingeltonAppManager.AppManager import AppManager
-from SingeltonAppManager.AppManager import app
-from flask import render_template, request, url_for, session, redirect, jsonify #type:ignore
 from SingeltonAppManager.AppManager import TOKEN_INFO # Import the app instance for the token
 import spotipy
 
 class PlayMod():
     def __init__(self,token_info):
         self.token_info = token_info
+        self.sp = spotipy.Spotify(auth=self.token_info['access_token'])
 
     def remove_song(self,song_id):
         # sp = spotipy.Spotify(auth=self.token_info['access_token'])
@@ -15,10 +14,10 @@ class PlayMod():
         return self.token_info
 
     def create_playlist(self, name, song_list):
-        sp = spotipy.Spotify(auth=self.token_info['access_token'])
+        user_id = self.sp.current_user()['id']
+        playlist = self.sp.user_playlist_create(user_id, name, public=False)
 
-        user_id = sp.current_user()['id']
-        playlist = sp.user_playlist_create(user_id, name, public=False)
-        
-        sp.playlist_add_items(playlist_id=playlist['id'], items=song_list)
-        print("Playlist " + playlist['name'] + 'created')
+        # Splitting the song_uris list into chunks of 100, as Spotify has a limit
+        # on the number of tracks that can be added at once.
+        for i in range (len(song_list)):
+            self.sp.playlist_add_items(playlist['id'], song_list[i])

@@ -18,8 +18,7 @@ class GenreSortingStrategy(SortingStrategy):
                 if shortest_genre not in genre_song_dict: 
                     genre_song_dict[shortest_genre] = {'songs':[], 'song_uri':[]}
                 genre_song_dict[shortest_genre]['songs'].append(song['track']['name'])
-                genre_song_dict[shortest_genre]['song_uri'].append(song['track']['uri'].split(":")[-1])
-                print(song['track']['uri'].split(":")[-1])
+                genre_song_dict[shortest_genre]['song_uri'].append(song['track']['uri'])
         return genre_song_dict
     
 class ArtistSortingStrategy(SortingStrategy):

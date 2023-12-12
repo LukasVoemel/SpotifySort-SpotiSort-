@@ -16,12 +16,15 @@
                 <div class="category">
                     <h2>{{ category }}</h2>
                     <ul class="list-group">
-                        {% for song in songs %}
+                        {% for song in songs.songs %}
                             <li class="list-group-item">{{ song }}</li>
                         {% endfor %}
                     </ul>
                     <div class="text-center button-group">
-                        <form method="POST"  class="d-inline">
+                        <form method="POST"  action="{{ url_for('create_playlist') }}" class="d-inline">
+                            <input type="hidden" name="song_list" value="{{songs.song_uri}}">
+                            <input type="hidden" name="playlist_name" value="{{category}}">
+                            <input type="hidden" name="playlist" value="{{playlist}}">
                             <button type="submit" class="btn btn-success">Accept</button>
                         </form>
                         <form method="POST" class="d-inline">
