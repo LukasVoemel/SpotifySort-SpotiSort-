@@ -58,6 +58,11 @@ def main():
   @app.route('/remove_song', methods=['GET','POST'], endpoint='remove_song')
   def remove_song():
       return PlayMod(appManager.get_token()).remove_song(request.form['song_id'])
+  
+  @app.route('/create_playlist', methods=['GET','POST'], endpoint='create_playlist')
+  def create_playlist():
+      PlayMod(appManager.get_token()).create_playlist(request.form['playlist_name'],request.form['song_list'])
+      return render_template('playlistCreate.html', playlist=request.form['playlist'])
 
   app.run(debug=True)
 
