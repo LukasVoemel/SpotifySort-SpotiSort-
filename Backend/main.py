@@ -37,6 +37,8 @@ def main():
     album_picture_out = factory.create_album_info(appManager.get_token()).get_info()
     #zips up all the varibles to send to the html 
     artist_and_song_name = list(zip(artist_name_out, song_name_out, album_picture_out))
+    
+
     return render_template('sortPage.html', artist_and_song_name=artist_and_song_name)
     
   @app.route('/display_liked', methods=['GET', 'POST'], endpoint='display_liked')
