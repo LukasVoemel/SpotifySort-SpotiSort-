@@ -2,6 +2,11 @@ from SingeltonAppManager.AppManager import app
 import time 
 import threading
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 987dcb98cf91c0c84068431d3076ba3f230b9d39
 #Subject: this is the core of the pattern, since when changed it needs to communicate to the other places 
 # fetch tracks is responsible for fetching and storing track info 
 # subject fetches tracks and keeps a list of the observers 
@@ -17,21 +22,18 @@ class TracksSubject:
 
     def notify_observers(self):
         for observer in self._observers:
-            #print("HIIOOOOO", observer)
-            observer.update(self._tracks) 
+          observer.update(self._tracks) 
 
     def fetch_tracks(self):
-        #print("GANG")
         tracks = self.sp.current_user_saved_tracks()
-        #print("HELP", tracks)
         self._tracks = tracks
         self.notify_observers() 
 
     def start_fetching(self):
         self._running = True
         while self._running:
-            self.fetch_tracks()
-            time.sleep(30)
+          self.fetch_tracks()
+          time.sleep(30)
 
     def stop_fetching(self):
         self._running = False
@@ -51,6 +53,9 @@ class trackInfoObserver:
         self.tracks = []
 
     def update(self, tracks):
+<<<<<<< HEAD
+=======
         #print("YALLLL", tracks)
+>>>>>>> 987dcb98cf91c0c84068431d3076ba3f230b9d39
         self.tracks = tracks  # Update the stored tracks
-        #print("HEREahdfash", self.tracks)
+        
