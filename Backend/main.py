@@ -8,6 +8,7 @@ from StrategySortMethodAlgo.SortAlgo import MoodSortingStrategy, ArtistSortingSt
 import spotipy
 
 
+
 def main():
   appManager = AppManager()
 
@@ -52,6 +53,7 @@ def main():
 
     #zips up all the varibles to send to the html 
     artist_and_song_name = list(zip(artist_name_out, song_name_out, album_picture_out))
+    
 
     return render_template('sortPage.html', artist_and_song_name=artist_and_song_name)
     

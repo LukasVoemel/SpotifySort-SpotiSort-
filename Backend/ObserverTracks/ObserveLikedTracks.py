@@ -6,6 +6,7 @@ import time
 import threading
 
 
+
 #Subject: this is the core of the pattern, since when changed it needs to communicate to the other places 
 # fetch tracks is responsible for fetching and storing track info 
 # subject fetches tracks and keeps a list of the observers 
@@ -21,21 +22,18 @@ class TracksSubject:
 
     def notify_observers(self):
         for observer in self._observers:
-            #print("HIIOOOOO", observer)
-            observer.update(self._tracks) 
+          observer.update(self._tracks) 
 
     def fetch_tracks(self):
-        #print("GANG")
         tracks = self.sp.current_user_saved_tracks()
-        #print("HELP", tracks)
         self._tracks = tracks
         self.notify_observers() 
 
     def start_fetching(self):
         self._running = True
         while self._running:
-            self.fetch_tracks()
-            time.sleep(30)
+          self.fetch_tracks()
+          time.sleep(30)
 
     def stop_fetching(self):
         self._running = False
@@ -58,7 +56,5 @@ class trackInfoObserver:
 
 
     def update(self, tracks):
-        
-        #print("YALLLL", tracks)
         self.tracks = tracks  # Update the stored tracks
-        #print("HEREahdfash", self.tracks)
+        
