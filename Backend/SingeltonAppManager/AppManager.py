@@ -1,6 +1,6 @@
 import time
 from spotipy.oauth2 import SpotifyOAuth
-from flask import Flask, request, url_for, session, redirect
+from flask import Flask, url_for, session, redirect #type:ignore
 
 app = Flask(__name__,template_folder='../../Frontend/templates', static_folder='../../Frontend/static' )
 app.config['SESSION_COOKIE_NAME'] = 'Spotify Cookie'

@@ -1,10 +1,6 @@
-from flask import session, redirect, url_for
-from abc import ABC, abstractmethod
 from SingeltonAppManager.AppManager import app
-import spotipy
 import time 
 import threading
-
 
 #Subject: this is the core of the pattern, since when changed it needs to communicate to the other places 
 # fetch tracks is responsible for fetching and storing track info 
@@ -44,21 +40,17 @@ class TracksSubject:
         fetching_thread = threading.Thread(target=self.start_fetching)
         fetching_thread.start()
 
-
-#the observer is a class that defines the update method which is called by the subject to notify the obserevs of any chance 
+# The observer is a class that defines the update method which is called by the subject to notify the obserevs of any chance 
 # concerete implemetnation of the observer are the actual objets that are insteresed in the state of the subject and react to the changes
-
 # Track info Observer, when it receives the notification (update) the process the new track data 
-
 # this is what wishes to be updated changes in data 
 # the subject will call the update methosd, and observers register with subjects 
+
 class trackInfoObserver:
     def __init__(self):
         self.tracks = []
 
-
     def update(self, tracks):
-        
         #print("YALLLL", tracks)
         self.tracks = tracks  # Update the stored tracks
         #print("HEREahdfash", self.tracks)

@@ -1,4 +1,3 @@
-from flask import session, redirect, url_for
 from abc import ABC, abstractmethod
 from SingeltonAppManager.AppManager import app
 import spotipy
@@ -16,7 +15,8 @@ class GenreSortingStrategy(SortingStrategy):
             genres = sp.artist(song['track']['artists'][0]['id'])['genres'] # type: ignore
             if genres:
                 shortest_genre = [genre.title() for genre in genres if len(genre) == len(min(genres, key=len))][-1]
-                if shortest_genre not in genre_song_dict: genre_song_dict[shortest_genre] = []
+                if shortest_genre not in genre_song_dict: 
+                    genre_song_dict[shortest_genre] = []
                 genre_song_dict[shortest_genre].append(song['track']['name'])
         return genre_song_dict
     
