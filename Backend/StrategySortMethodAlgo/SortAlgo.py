@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import spotipy
 
+#Strategy Pattern
 class SortingStrategy(ABC):
     @abstractmethod
     def sort(self, tracks,sp):

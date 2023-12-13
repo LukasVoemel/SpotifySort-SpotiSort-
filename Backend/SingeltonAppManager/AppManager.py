@@ -7,6 +7,7 @@ app.config['SESSION_COOKIE_NAME'] = 'Spotify Cookie'
 app.secret_key = 'asdkfjhwih4khsgksadhfsakdfjhvn234kjhasfkb3i4h2'
 TOKEN_INFO = 'token_info'
 
+#Singleton pattern
 class AppManager:
   _instance = None; 
   def __new__(cls):
