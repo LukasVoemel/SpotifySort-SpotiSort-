@@ -6,7 +6,6 @@ from FactoryDisplayLikedSongs.DisplayLikedSongs import ArtistInfoFactory
 from SingeltonAppManager.AppManager import TOKEN_INFO # Import the app instance for the token
 from StrategySortMethodAlgo.SortAlgo import MoodSortingStrategy, ArtistSortingStrategy, GenreSortingStrategy, SortAlgo
 
-
 def main():
   appManager = AppManager()
   
@@ -38,8 +37,11 @@ def main():
     album_picture_out = factory.create_album_info(appManager.get_token()).get_info()
     #zips up all the varibles to send to the html 
     artist_and_song_name = list(zip(artist_name_out, song_name_out, album_picture_out))
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> 417558e12eeeac1acc580cef256f31bde0109996
     return render_template('sortPage.html', artist_and_song_name=artist_and_song_name)
     
   @app.route('/display_liked', methods=['GET', 'POST'], endpoint='display_liked')
@@ -61,6 +63,11 @@ def main():
   @app.route('/remove_song', methods=['GET','POST'], endpoint='remove_song')
   def remove_song():
       return PlayMod(appManager.get_token()).remove_song(request.form['song_id'])
+  
+  @app.route('/create_playlist', methods=['GET','POST'], endpoint='create_playlist')
+  def create_playlist():
+      PlayMod(appManager.get_token()).create_playlist(request.form['playlist_name'],request.form['song_list'])
+      return render_template('playlistCreate.html', playlist=request.form['playlist'])
 
   app.run(debug=True)
 
