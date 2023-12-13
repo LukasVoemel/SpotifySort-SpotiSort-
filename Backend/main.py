@@ -40,10 +40,6 @@ def main():
     artist_and_song_name = list(zip(artist_name_out, song_name_out, album_picture_out))
 
     return render_template('sortPage.html', artist_and_song_name=artist_and_song_name)
-    
-  # @app.route('/display_liked', methods=['GET', 'POST'], endpoint='display_liked')
-  # def display_liked():
-  #   return jsonify(ArtistInfoFactory().create_song_info(appManager.get_token()).get_info())
   
   @app.route('/sort_genre', methods=['GET', 'POST'], endpoint='sort_genre')
   def sort_genre():
