@@ -8,16 +8,20 @@ class PlayMod():
         self.token_info = token_info
         self.sp = spotipy.Spotify(auth=self.token_info['access_token'])
 
+<<<<<<< HEAD
     def remove_song(self,song_id):
         sp = spotipy.Spotify(auth=self.token_info['access_token'])
         sp.current_user_saved_tracks_delete(tracks=[song_id])
         return redirect(url_for('sort_here_button'))
+=======
+    def remove_song(self,song_id,liked_songs):
+        self.sp.current_user_saved_tracks_delete([song_id])
+        for item in liked_songs:
+            if(item[3] == song_id): liked_songs.remove(item)
+        return liked_songs
+        # return self.token_info
+>>>>>>> f5a2dbb3d7354d20bcdcdc5fa8e71242ec6765d4
 
     def create_playlist(self, name, song_list):
-        user_id = self.sp.current_user()['id']
-        playlist = self.sp.user_playlist_create(user_id, name, public=False)
-
-        # Splitting the song_uris list into chunks of 100, as Spotify has a limit
-        # on the number of tracks that can be added at once.
-        # self.sp.playlist_add_items(playlist['id'], song_list[i])
-        self.sp.user_playlist_add_tracks(user_id, playlist['id'],eval(song_list))
+        user_id = self.sp.current_user()['id'] #type:ignore
+        self.sp.user_playlist_add_tracks(user_id, self.sp.user_playlist_create(user_id, name, public=False)['id'],eval(song_list)) #type:ignore
