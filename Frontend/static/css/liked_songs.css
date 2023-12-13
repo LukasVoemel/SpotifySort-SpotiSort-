@@ -16,4 +16,19 @@ body, html {
   font-size: 36px; 
   text-align: center;
   margin-top: 20px;
+  margin-left: 20px; 
+}
+
+.button-container {
+  text-align: center; /* Center the buttons horizontally */
+  display: flex;
+  flex-direction: column; /* Stack the buttons vertically */
+  align-items: center; /* Center the buttons vertically */
+  height: 100vh; /* Center vertically within the viewport */
+}
+
+.bigger-button {
+  font-size: 24px; /* Increase the button text size */
+  padding: 20px 40px; /* Increase button padding for bigger size */
+  margin: 10px 0; /* Add spacing between buttons */
 }

@@ -9,11 +9,11 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <!-- <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="home.html">Home</a>
+            <a class="navbar-brand" href="home.html"></a>
         </nav>
-    </header>
+    </header> -->
     <main>
         <section class="intro-section">
             <img src="../static/img/SpotiSort.png">
@@ -23,12 +23,8 @@
                 <h2>Automated Sorting</h2>
                 <p style="color:white">Let SpotiSort categorize your music based on genre, mood, or artist.</p>
                 <form method="POST" action = "{{url_for('sort_here_button')}}">
-                    <button type="submit" class="btn btn-outline-success">Sort!</button>
+                    <button type="submit" class="btn btn-outline-success">Get Started!</button>
                 </form>
-            </div>
-            <div class="feature">
-                <h2>Easy Playlist Management</h2>
-                <p style="color:white">Create and manage playlists with a simple and intuitive interface.</p>
             </div>
         </section>
     </main>

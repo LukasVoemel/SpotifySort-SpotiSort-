@@ -69,7 +69,8 @@ header {
     border-radius: 10px;
     width: 30%;
     margin: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px #06270033;
+    text-align: center;
 }
 
 .feature h2 {

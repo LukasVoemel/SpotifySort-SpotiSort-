@@ -11,7 +11,7 @@
 <body>
   <div class="side-by-side-containers">
     <div class="left-container">
-      <h1 id="titleLiked" style="color:white">Liked Songs</h1>
+      <h1 id="titleLiked" style="color:white; text-align: center; text-decoration: solid;">Liked Songs</h1>
         {% for artist, song, album_picture, id in artist_and_song_name %}
           <ul class="list-group list-group-cool">
 
@@ -27,23 +27,23 @@
             <form method="POST" action="{{ url_for('remove_song') }}">
               <input type="hidden" name="song_id" value="{{ id }}">
               <input type="hidden" name="liked_songs" value="{{ artist_and_song_name }}">
-              <button type="submit" class="btn btn-outline-secondary">Remove song</button>
+              <button type="submit" class="btn btn-success text-dark">Remove song</button>
             </form>
           </ul>
         {% endfor %}
     </div>
     <div class="right-container">
         <h1 id="titleSortButton" style="color:white">Sort Songs By:</h1>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <form method="POST" action = "{{url_for('sort_genre')}}">
-              <button type="submit" class="btn btn-outline-secondary">Genre</button>
-            </form>
-            <form method="POST" action = "{{url_for('sort_artist')}}">
-              <button type="submit" class="btn btn-outline-secondary">Artist</button>
-            </form>
-            <form method="POST" action = "{{url_for('sort_mood')}}">
-              <button type="submit" class="btn btn-outline-secondary">Mood</button>
-            </form>
+        <div class="button-container">
+          <form method="POST" action="{{url_for('sort_genre')}}">
+            <button type="submit" class="btn btn-outline-secondary bigger-button">Genre</button>
+          </form>
+          <form method="POST" action="{{url_for('sort_artist')}}">
+            <button type="submit" class="btn btn-outline-secondary bigger-button">Artist</button>
+          </form>
+          <form method="POST" action="{{url_for('sort_mood')}}">
+            <button type="submit" class="btn btn-outline-secondary bigger-button">Mood</button>
+          </form>
         </div>
     </div>
 </div>

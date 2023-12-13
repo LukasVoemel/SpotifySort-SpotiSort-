@@ -45,6 +45,8 @@ class TracksSubject:
 # this is what wishes to be updated changes in data 
 # the subject will call the update methosd, and observers register with subjects 
 
+
+# observer defines how to update 
 class trackInfoObserver:
     def __init__(self):
         self.tracks = []

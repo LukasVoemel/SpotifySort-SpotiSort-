@@ -29,7 +29,7 @@ import time
   # each concrere producs knows how to make a concrete facotry 
 
 #Product Interface
-class SongInfo(ABC): # type: ignore
+class SongInfo(ABC): 
     @abstractmethod
     def get_info(self):
         pass
@@ -126,7 +126,7 @@ class AlbumInfo(SongInfo):
     image_urls = []
     first_item = self.tracks_info
 
-    for item in first_item['items']: # type: ignore
+    for item in first_item['items']:
       image_url = item['track']['album']['images'][0]['url']
       image_urls.append(image_url)
 

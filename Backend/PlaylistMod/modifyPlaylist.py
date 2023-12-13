@@ -13,7 +13,7 @@ class PlayMod():
         for item in liked_songs:
             if(item[3] == song_id): liked_songs.remove(item)
         return liked_songs
-        # return self.token_info
+        
 
     def create_playlist(self, name, song_list):
         user_id = self.sp.current_user()['id'] #type:ignore
