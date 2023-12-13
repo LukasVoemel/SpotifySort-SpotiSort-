@@ -50,7 +50,5 @@ class trackInfoObserver:
         self.tracks = []
 
     def update(self, tracks):
-        
-        #print("YALLLL", tracks)
         self.tracks = tracks  # Update the stored tracks
         
