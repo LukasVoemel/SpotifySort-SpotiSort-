@@ -1,12 +1,13 @@
 from abc import ABC, abstractmethod
 import spotipy
 
-#Strategy Pattern
+#Strategy Interface
 class SortingStrategy(ABC):
     @abstractmethod
     def sort(self, tracks,sp):
         pass
 
+# These three classes are the concrete strategies 
 class GenreSortingStrategy(SortingStrategy):
     def sort(self,tracks,sp):
         genre_song_dict = {}
@@ -47,6 +48,7 @@ class MoodSortingStrategy(SortingStrategy):
                 mood_song_dict[mood]['song_uri'].append(song['track']['uri'])
         return mood_song_dict
 
+# Stragety context
 class SortAlgo():
     def __init__(self, strategy: SortingStrategy, token_info):
         self.strategy = strategy

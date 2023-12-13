@@ -24,11 +24,7 @@
             <form method="POST" action="{{url_for('remove_song')}}">
               <input type="hidden" name="song_id" value="{{ id }}">
               <input type="hidden" name="liked_songs" value="{{ artist_and_song_name }}">
-<<<<<<< HEAD
-              <button type="submit" class="btn btn-success text-dark">Remove song</button>
-=======
               <button type="submit" class="btn btn-outline-secondary">Remove song from Liked Songs</button>
->>>>>>> 90508bfd294098a0794cef7e7dc8b948b85087a8
             </form>
           </ul>
         {% endfor %}

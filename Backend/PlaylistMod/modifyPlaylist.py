@@ -10,10 +10,6 @@ class PlayMod():
         for item in liked_songs:
             if(item[3] == song_id): liked_songs.remove(item)
         return liked_songs
-<<<<<<< HEAD
-        
-=======
->>>>>>> 90508bfd294098a0794cef7e7dc8b948b85087a8
 
     def create_playlist(self, name, song_list):
         user_id = self.sp.current_user()['id'] #type:ignore

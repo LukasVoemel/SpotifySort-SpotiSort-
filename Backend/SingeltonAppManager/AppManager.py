@@ -9,6 +9,8 @@ TOKEN_INFO = 'token_info'
 
 #Singleton pattern
 class AppManager:
+
+  #Private constructor
   _instance = None; 
   def __new__(cls):
     if cls._instance is None:
@@ -19,6 +21,7 @@ class AppManager:
   def initialize(self):
     pass
   
+  #Creates the token and information needed to authenticate user
   def create_spotify_oauth(self):
       return SpotifyOAuth(
         client_id = "f96ffd1f60e443c5b6b12adeb2863384", 
