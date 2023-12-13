@@ -12,9 +12,6 @@ class PlayMod():
         # sp.current_user_saved_tracks_delete(tracks=[song_id])
         # return redirect(url_for('sort_here_button'))
         return self.token_info
-<<<<<<< HEAD
-        
-=======
 
     def create_playlist(self, name, song_list):
         user_id = self.sp.current_user()['id']
@@ -24,4 +21,3 @@ class PlayMod():
         # on the number of tracks that can be added at once.
         for i in range (len(song_list)):
             self.sp.playlist_add_items(playlist['id'], song_list[i])
->>>>>>> 417558e12eeeac1acc580cef256f31bde0109996
