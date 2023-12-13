@@ -12,6 +12,4 @@ class PlayMod():
         # sp.current_user_saved_tracks_delete(tracks=[song_id])
         # return redirect(url_for('sort_here_button'))
         return self.token_info
-
-    def create_playlist(self, name, song_list):
         
