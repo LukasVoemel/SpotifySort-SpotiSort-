@@ -23,8 +23,7 @@ class AppManager:
         client_id = "f96ffd1f60e443c5b6b12adeb2863384", 
         client_secret = "101af488cb71478b8093a7d6311ae74d", 
         redirect_uri = url_for('redirect_page', _external=True),
-        scope = 'user-library-modify playlist-modify-public playlist-modify-private' # look at the doc to figure out exact scopes 
-        ) 
+        scope = 'user-library-modify playlist-modify-public playlist-modify-private')
   
   def get_token(self):
     token_info = session.get(TOKEN_INFO, None)

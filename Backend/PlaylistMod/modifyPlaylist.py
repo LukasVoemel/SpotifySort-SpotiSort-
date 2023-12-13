@@ -1,6 +1,3 @@
-from SingeltonAppManager.AppManager import AppManager
-from SingeltonAppManager.AppManager import TOKEN_INFO # Import the app instance for the token
-from flask import render_template, request, url_for, session, redirect, jsonify
 import spotipy
 
 class PlayMod():
@@ -13,7 +10,6 @@ class PlayMod():
         for item in liked_songs:
             if(item[3] == song_id): liked_songs.remove(item)
         return liked_songs
-        # return self.token_info
 
     def create_playlist(self, name, song_list):
         user_id = self.sp.current_user()['id'] #type:ignore
