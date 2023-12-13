@@ -35,11 +35,9 @@ def main():
     artist_name_out = factory.create_artist_info(appManager.get_token()).get_info()
     song_name_out = factory.create_song_info(appManager.get_token()).get_info()
     album_picture_out = factory.create_album_info(appManager.get_token()).get_info()
-    
     id_out = factory.create_id_info(appManager.get_token()).get_info()
     #zips up all the varibles to send to the html 
-    artist_and_song_name = list(zip(artist_name_out, song_name_out, album_picture_out))
-
+    artist_and_song_name = list(zip(artist_name_out, song_name_out, album_picture_out, id_out))
     return render_template('sortPage.html', artist_and_song_name=artist_and_song_name)
   
   @app.route('/sort_genre', methods=['GET', 'POST'], endpoint='sort_genre')
