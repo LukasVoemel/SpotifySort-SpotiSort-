@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SpotiSort - Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link id="logo" href="{{ url_for('static', filename='img/SpotiSort.png') }}">
-
-
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link id="logo" href="{{url_for('static', filename='img/SpotiSort.png')}}">
 </head>
 <body>
     <div class="login-wrapper">
@@ -15,7 +13,7 @@
             <img src="../static/img/SpotiSort.png">
             <form method="post" action="/">
                 <div class="input-group">
-                    <button type="submit">Next</button>
+                    <button type="submit">Login</button>
                 </div>
             </form>
         </div>

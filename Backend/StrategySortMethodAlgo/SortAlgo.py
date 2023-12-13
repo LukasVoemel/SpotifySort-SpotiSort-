@@ -1,8 +1,7 @@
 from abc import ABC, abstractmethod
-from SingeltonAppManager.AppManager import app
 import spotipy
-from abc import ABC, abstractmethod
 
+#Strategy Pattern
 class SortingStrategy(ABC):
     @abstractmethod
     def sort(self, tracks,sp):

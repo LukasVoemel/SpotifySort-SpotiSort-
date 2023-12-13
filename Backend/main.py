@@ -1,9 +1,7 @@
 from PlaylistMod.modifyPlaylist import PlayMod
-from SingeltonAppManager.AppManager import AppManager
-from SingeltonAppManager.AppManager import app
-from flask import render_template, request, url_for, session, redirect, jsonify #type:ignore
+from SingeltonAppManager.AppManager import AppManager, app, TOKEN_INFO
+from flask import render_template, request, url_for, session, redirect #type:ignore
 from FactoryDisplayLikedSongs.DisplayLikedSongs import ArtistInfoFactory
-from SingeltonAppManager.AppManager import TOKEN_INFO # Import the app instance for the token
 from StrategySortMethodAlgo.SortAlgo import MoodSortingStrategy, ArtistSortingStrategy, GenreSortingStrategy, SortAlgo
 
 def main():
@@ -36,11 +34,17 @@ def main():
     artist_name_out = factory.create_artist_info(appManager.get_token()).get_info()
     song_name_out = factory.create_song_info(appManager.get_token()).get_info()
     album_picture_out = factory.create_album_info(appManager.get_token()).get_info()
+<<<<<<< HEAD
     
     id_out = factory.create_id_info(appManager.get_token()).get_info()
     #zips up all the varibles to send to the html 
     artist_and_song_name = list(zip(artist_name_out, song_name_out, album_picture_out, id_out))
     return render_template('sortPage.html', artist_and_song_name=artist_and_song_name)
+=======
+    id_out = factory.create_id_info(appManager.get_token()).get_info()
+    #zips up all the varibles to send to the html 
+    return render_template('sortPage.html', artist_and_song_name=list(zip(artist_name_out, song_name_out, album_picture_out, id_out)))
+>>>>>>> 90508bfd294098a0794cef7e7dc8b948b85087a8
   
   @app.route('/sort_genre', methods=['GET', 'POST'], endpoint='sort_genre')
   def sort_genre():
@@ -56,8 +60,7 @@ def main():
   
   @app.route('/remove_song', methods=['GET','POST'], endpoint='remove_song')
   def remove_song():
-      liked_songs = PlayMod(appManager.get_token()).remove_song(request.form['song_id'],eval(request.form['liked_songs']))
-      return render_template('sortPage.html', artist_and_song_name=liked_songs)
+      return render_template('sortPage.html', artist_and_song_name=PlayMod(appManager.get_token()).remove_song(request.form['song_id'],eval(request.form['liked_songs'])))
   
   @app.route('/create_playlist', methods=['GET','POST'], endpoint='create_playlist')
   def create_playlist():

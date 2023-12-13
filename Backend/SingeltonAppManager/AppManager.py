@@ -7,6 +7,7 @@ app.config['SESSION_COOKIE_NAME'] = 'Spotify Cookie'
 app.secret_key = 'asdkfjhwih4khsgksadhfsakdfjhvn234kjhasfkb3i4h2'
 TOKEN_INFO = 'token_info'
 
+#Singleton pattern
 class AppManager:
   _instance = None; 
   def __new__(cls):
@@ -23,8 +24,7 @@ class AppManager:
         client_id = "f96ffd1f60e443c5b6b12adeb2863384", 
         client_secret = "101af488cb71478b8093a7d6311ae74d", 
         redirect_uri = url_for('redirect_page', _external=True),
-        scope = 'user-library-modify playlist-modify-public playlist-modify-private' # look at the doc to figure out exact scopes 
-        ) 
+        scope = 'user-library-modify playlist-modify-public playlist-modify-private')
   
   def get_token(self):
     token_info = session.get(TOKEN_INFO, None)

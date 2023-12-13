@@ -20,7 +20,6 @@ import time
   # defines methods for creating objects, In the factory Pattern 
   # this interface allows for the creating ob objects 
   # without specifiuiong the exact class of the object that will be created 
-  
   #info factory is the factory inerface 
   #declares methods like artist info, create song info, create almbum info, which are meant to be implemented by conrcrete factores to specify types of song info object 
 
@@ -132,7 +131,7 @@ class AlbumInfo(SongInfo):
 
     return image_urls
 
-#Factory INterface
+#Factory Interface
 class InfoFactory(ABC):
     @abstractmethod
     def create_artist_info(self, token_info):
