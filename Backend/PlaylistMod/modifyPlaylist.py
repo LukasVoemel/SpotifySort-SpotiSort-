@@ -1,5 +1,6 @@
 from SingeltonAppManager.AppManager import AppManager
 from SingeltonAppManager.AppManager import TOKEN_INFO # Import the app instance for the token
+from flask import render_template, request, url_for, session, redirect, jsonify
 import spotipy
 
 class PlayMod():
@@ -8,10 +9,9 @@ class PlayMod():
         self.sp = spotipy.Spotify(auth=self.token_info['access_token'])
 
     def remove_song(self,song_id):
-        # sp = spotipy.Spotify(auth=self.token_info['access_token'])
-        # sp.current_user_saved_tracks_delete(tracks=[song_id])
-        # return redirect(url_for('sort_here_button'))
-        return self.token_info
+        sp = spotipy.Spotify(auth=self.token_info['access_token'])
+        sp.current_user_saved_tracks_delete(tracks=[song_id])
+        return redirect(url_for('sort_here_button'))
 
     def create_playlist(self, name, song_list):
         user_id = self.sp.current_user()['id']
